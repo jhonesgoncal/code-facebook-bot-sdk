@@ -5,11 +5,11 @@ use GuzzleHttp\Client;
 
 class CallSendApi{
     const URL = 'https://graph.facebook.com/v2.6/me/messages';
-    private $pageAcessToken;
+    private $pageAccessToken;
 
-    public function __construct(string $pageAcessToken)
+    public function __construct(string $pageAccessToken)
     {
-        $this->pageAcessToken = $pageAcessToken;
+        $this->pageAccessToken = $pageAccessToken;
     }
 
     public function make(array  $message, string $url = null, $method = 'POST') : string {
@@ -18,7 +18,7 @@ class CallSendApi{
 
         $response = $client->request($method, $url, [
             'json' => $message,
-            'query' => ['acesss_token' => $this->pageAcessToken]
+            'query' => ['acesss_token' => $this->pageAccessToken]
         ]);
 
         return (string)$response->getBody();
